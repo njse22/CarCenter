@@ -51,17 +51,22 @@ public class CarController {
 		return msj;
 	}
 
-	public String TotalColissionProb(){
+	public String totalColissionProb(){
 		String msj = "Probabilidades de colision \n";
 		for(int i=1; i<cars.size(); i++){
 			if(cars.get(i) instanceof AutonomousCar){
-				msj += "("+cars.get(i).getId()+") "+((AutonomousCar)cars.get(i)).calculateCollisionProbability(cars.get(0))+"\n";
+				msj += "( Auto: "+cars.get(i).getId()+" ) "+((AutonomousCar)cars.get(i)).calculateCollisionProbability(cars.get(0))+"\n";
 			}else{
-				msj += "No es posible calcular la probabilidad de colision con el vehiculo :"+cars.get(i).getId()+"\n";
+				msj += "No es posible calcular la probabilidad de colision con el vehiculo: "+cars.get(i).getId()+"\n";
 			}
 			
 		}
 		return msj;
+	}
+
+	public String totalBatteryCalculation(){
+
+		
 	}
 
 	

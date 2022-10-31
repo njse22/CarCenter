@@ -37,7 +37,7 @@ public class Main {
 		System.out.println("<<<<< Welcome to Store >>>>>");
 		System.out.println(
 				"1. agregar un carro nuevo\n" +
-				"2. calcular probabilidad de colisión \n" +
+				"2. calcular probabilidad de colision \n" +
 				"3. calcular estado de la bateria \n" +
 				"0. Exit. ");
 		option =  validateIntegerInput();
@@ -55,9 +55,9 @@ public class Main {
 				"2. Electricto \n"+
 				"n. Ninguno");
 				which = reader.nextLine();
-				if(which == "1"){
+				if(which.equals("1")){
 					createAutonomousCar();
-				}else if(which == "2"){
+				}else if(which.equals("2")){
 					createCar();
 				}else{
 					System.out.println("Ok");
@@ -94,6 +94,7 @@ public class Main {
 
 		if(reader.hasNextInt()){
 			option = reader.nextInt(); 
+			reader.nextLine();
 		}
 		else{
 			// clear reader. 
@@ -126,6 +127,7 @@ public class Main {
 		double battery = 0;
 		System.out.println("Inserte el ID del carro");
 		id = reader.next();
+		reader.nextLine();
 		System.out.println("Inserte la placa del carro");
 		licensePlate = reader.nextLine();
 		System.out.println("Inserte el modelo del carro");
@@ -144,6 +146,7 @@ public class Main {
 		double position = 0; 
 		System.out.println("Inserte el ID del carro");
 		id = reader.next();
+		reader.nextLine();
 		System.out.println("Inserte la placa del carro");
 		licensePlate = reader.nextLine();
 		System.out.println("Inserte el modelo del carro");
