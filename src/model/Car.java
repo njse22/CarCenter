@@ -55,6 +55,11 @@ public abstract class Car {
 		this.model = model;
 	}
 
+	
+	public boolean getIsAutonomous(){
+		return getIsAutonomous();
+	}
+
 	/**
 	 * 
 	 * @param kilometers
