@@ -2,6 +2,6 @@ package model;
 
 public interface IBatteryNotify {
 
-	public String calculateBatteryLevel();
+	public double calculateBatteryLevel(double km);
 
 }

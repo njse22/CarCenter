@@ -18,7 +18,7 @@ public class Main {
 
 		// creación del objeto. 
 		Main main = new Main(); 
-		// llamdo a uno de los metodos de la clase. 
+		// llamado a uno de los metodos de la clase. 
 		int option = 0; 
 
 		do{
@@ -45,26 +45,17 @@ public class Main {
 	}
 
 	public void executeOption(int option){
-		String id = ""; 
-		String licensePlate = ""; 
-		String model = ""; 
-		double velocity = 0; 
-		double position = 0; 
-
 		switch(option){
 			case 1: 
-				// create car 
-
+				createCar();
 				break; 
 
 			case 2: 
-				// calcular probabilidad de colisión  
-
+				calculateCollisionProbability();
 				break; 
 
 			case 3: 
-				// calcular capacidad de las baterias 
-
+			    calculateBatteryCapacity();
 				break; 
 
 			case 0: 
@@ -86,6 +77,7 @@ public class Main {
 
 		if(reader.hasNextInt()){
 			option = reader.nextInt(); 
+			reader.nextLine();
 		}
 		else{
 			// clear reader. 
@@ -111,6 +103,62 @@ public class Main {
 		return option; 
 	}
 
+	public void createCar(){
+		String id;
+		String licensePlate;
+		String model;
+		double position = 0;
+		double velocity = 0;
+		double batteryCapacity = 0;
+		int carType;
+		System.out.println("Que tipo de carro deseas añadir?\n" + 
+						   "1. Carro electrico\n" + 
+						   "2. Carro autonomo\n");
+		carType = validateIntegerInput();
+		if(carType != 1 && carType != 2){
+			System.out.println("Opcion invalida");
+			return;
+		}
+		System.out.println("Ingrese el id");
+		id = reader.nextLine();
+		System.out.println("Ingrese la placa");
+		licensePlate = reader.nextLine();
+		System.out.println("Ingrese el modelo");
+		model = reader.nextLine();
+		switch(carType){
+			case 1:
+				do{
+					System.out.println("Ingrese la capacidad de la bateria (KW)");
+					batteryCapacity = validateDoubleInput();
+				} while (batteryCapacity <= 0);
+			break;
 
+			case 2:
+				do{
+					System.out.println("Ingrese la posicion");
+					position = validateDoubleInput();
+				} while (position < 0);
+				do{
+					System.out.println("Ingrese la velocidad");
+					velocity = validateDoubleInput();
+				} while (velocity < 0);
+			break;
+		}
+		System.out.println(controller.createCar(id, licensePlate, model, position, velocity, batteryCapacity, carType));
+	}
 
+	public void calculateCollisionProbability(){
+		System.out.println(controller.calculateCollisionProbability());
+	}
+
+	public void calculateBatteryCapacity(){
+		double km;
+		System.out.println("Ingrese el kilometraje");
+		km = validateDoubleInput();
+		if(km < 0){
+			System.out.println("Kilometraje incorrecto");
+			return;
+		}
+		System.out.println(controller.calculateBatteryCapacity(km));
+	}
 }
