@@ -5,11 +5,11 @@ import java.util.Scanner;
 
 public class Main {
 
-	private CarController controller;
+	private CarController carController;
 	private Scanner reader;
 
 	public Main() {
-		controller = new CarController();
+		carController = new CarController();
 		reader = new Scanner(System.in);
 
 	}
@@ -45,21 +45,69 @@ public class Main {
 	}
 
 	public void executeOption(int option){
+		int typeOfCar =0;
+		String msj ="";
 		String id = ""; 
 		String licensePlate = ""; 
 		String model = ""; 
 		double velocity = 0; 
 		double position = 0; 
+		double batteryCapacity = 0;
 
 		switch(option){
 			case 1: 
-				// create car 
+				System.out.println("You are now adding a car");
+				System.out.println("Choose which car you are creating: ");
 
+				System.out.println("1. Autonomous car \n" +
+				"2. Electric Car");
+				typeOfCar = validateIntegerInput();
+				if(typeOfCar == 1){
+					System.out.println("Write the id of the car:");
+					id = reader.next();
+					System.out.println("Write the license plate of the car:");
+					licensePlate = reader.next();
+					System.out.println("Write the model of the car: ");
+					model = reader.next();
+					System.out.println("Write the velocity of the car: ");
+					velocity = validateDoubleInput();
+					System.out.println("Write the position of the car:");
+					position = validateDoubleInput();
+ 
+					msj = carController.createCar(id, licensePlate, model, position, velocity, position, TypeOfCar.AUTONOMOUSCAR);
+					System.out.println(msj);
+
+				}else if(typeOfCar == 2){
+					System.out.println("Write the id of the car:");
+					id = reader.next();
+					System.out.println("Write the license plate of the car:");
+					licensePlate = reader.next();
+					System.out.println("Write the model of the car: ");
+					model = reader.next();
+					System.out.println("Write the battery capacity of the car:");
+					batteryCapacity = validateDoubleInput();
+					System.out.println("Write the velocity of the car: ");
+					velocity = validateDoubleInput();
+					System.out.println("Write the position of the car:");
+					position = validateDoubleInput();
+
+					msj = carController.createCar(id, licensePlate, model, position, velocity, batteryCapacity, TypeOfCar.ELECTRICCAR);
+					System.out.println(msj);
+			
+
+				}else{
+					msj = "Sorry an error happened";
+					System.out.println(msj);
+				}
 				break; 
 
 			case 2: 
-				// calcular probabilidad de colisión  
+				System.out.println("You are about to calculate the probability of colision");
+				System.out.println("Write the car id: ");
+				id = reader.next();
 
+
+				
 				break; 
 
 			case 3: 
