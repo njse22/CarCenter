@@ -2,8 +2,8 @@ package model;
 
 public class AutonomousCar extends Car implements ICollisionProbability {
 
-	private double position;
 	private double velocity;
+	private double position;
 
 	/**
 	 * 
@@ -14,7 +14,7 @@ public class AutonomousCar extends Car implements ICollisionProbability {
 	 * @param velocity
 	 */
 	public AutonomousCar(String id, String licensePlate, String model, double position, double velocity) {
-		super(id, licensePlate, model); 
+		super(id, licensePlate, model, velocity); 
 		this.position = position;
 		this.velocity = velocity;
 
@@ -42,6 +42,28 @@ public class AutonomousCar extends Car implements ICollisionProbability {
 	 */
 	public void setVelocity(double velocity) {
 		this.velocity = velocity;
+	}
+
+	@Override
+	public String calculateCollisionProbability(Car car) {
+		String msg = "";
+		if (car instanceof AutonomousCar) {
+			if (this.getPosition() == car.getPosition()) {
+				msg = "Peligro, colision inminente!";
+				this.velocity -= 10;
+			} else {
+				msg = "Los dos autos estan a una distancia segura";
+			} 
+		} else {
+			msg = "No se puede calcular la colision porque no es un auto autonomo";
+		}
+
+		return msg;
+	}
+
+	@Override
+	public String drive(double kilometers) {
+		return "El vehículo autónomo se ha movilizado en:" + kilometers + "km";
 	}
 
 }

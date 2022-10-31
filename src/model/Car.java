@@ -5,6 +5,7 @@ public abstract class Car {
 	private String id;
 	private String licensePlate;
 	private String model;
+	private double position;
 
 	/**
 	 * 
@@ -12,11 +13,11 @@ public abstract class Car {
 	 * @param licensePlate
 	 * @param model
 	 */
-	public Car(String id, String licensePlate, String model) {
+	public Car(String id, String licensePlate, String model, double position) {
 		this.id = id; 
 		this.licensePlate = licensePlate;
 		this.model = model;
-
+		this.position = position;
 	}
 
 	public String getId() {
@@ -61,4 +62,9 @@ public abstract class Car {
 	 */
 	public abstract String drive(double kilometers);
 
+	public double getPosition() {
+		return position;
+	}
+
+	
 }
