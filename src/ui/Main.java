@@ -49,21 +49,40 @@ public class Main {
 		String licensePlate = ""; 
 		String model = ""; 
 		double velocity = 0; 
-		double position = 0; 
+		double position = 0;
+		double batteryCapacity = 0;
+		switch(option) {
+			case 1:
+				// create car
+				System.out.print("Type car 0(Autonomous) 1(Electric): ");
+				int typeCar  = reader.nextInt();
+				System.out.print("Id: ");
+				id = reader.next();
+				System.out.print("License Plate: ");
+				licensePlate = reader.next();
+				System.out.print("Model: ");
+				model = reader.next();
 
-		switch(option){
-			case 1: 
-				// create car 
+				switch (typeCar) {
+					case 0 -> {
+						position = reader.nextDouble();
+						velocity = reader.nextDouble();
+						System.out.println(controller.createCar(id, licensePlate, model, position, velocity, -1));
+					}
+					case 1 -> {
+						batteryCapacity = reader.nextDouble();
+						System.out.println(controller.createCar(id, licensePlate, model, -1, -1, batteryCapacity));
+					}
+				}
+				break; 
+
+			case 2:
+
 
 				break; 
 
-			case 2: 
-				// calcular probabilidad de colisión  
-
-				break; 
-
-			case 3: 
-				// calcular capacidad de las baterias 
+			case 3:
+				System.out.println(controller.carBatteryStatus());
 
 				break; 
 
@@ -110,7 +129,6 @@ public class Main {
 
 		return option; 
 	}
-
 
 
 }
