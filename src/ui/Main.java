@@ -34,11 +34,13 @@ public class Main {
 
 	public int getOptionShowMenu(){
 		int option = 0; 
-		System.out.println("<<<<< Welcome to Store >>>>>");
+		System.out.println();
+		System.out.println("<<<<< Welcome to Autonomous Car Store >>>>>");
 		System.out.println(
-				"1. agregar un carro nuevo\n" +
-				"2. calcular probabilidad de colisión \n" +
-				"3. calcular estado de la bateria \n" +
+				"1. add a new autonomous car \n" +
+				"2. add a new electric car \n" +
+				"3. calculate collision probability \n" +
+				"4. calculate battery status \n" +
 				"0. Exit. ");
 		option =  validateIntegerInput();
 		return option; 
@@ -49,23 +51,63 @@ public class Main {
 		String licensePlate = ""; 
 		String model = ""; 
 		double velocity = 0; 
-		double position = 0; 
+		double position = 0;
+		double batteryCapacity = 0;
+		String msj = "";
 
 		switch(option){
 			case 1: 
-				// create car 
+				// add a new autonomous car
+				System.out.print("Type the id of the autonomous car: ");
+				id = reader.next();
+				System.out.print("Type the licensePlate of the autonomous car: ");
+				licensePlate = reader.next();
+				System.out.print("Type the model: ");
+				model = reader.next();
+				System.out.print("Type the position: ");
+				while (!reader.hasNextDouble()){
+					reader.next();
+					System.out.println("Enter a valid double number ");
+				}
+				position = reader.nextDouble();
+				System.out.print("Type the velocity: ");
+				while (!reader.hasNextDouble()){
+					reader.next();
+					System.out.println("Enter a valid double number ");
+				}
+				velocity = reader.nextDouble();
+				msj = controller.createAutonomousCar(id, licensePlate, model, position, velocity);
+				System.out.println(msj);
+				break; 
+
+			case 2: // add a new electric car
+				System.out.print("Type the id of the electric car: ");
+				id = reader.next();
+				System.out.print("Type the licensePlate of the autonomous car: ");
+				licensePlate = reader.next();
+				System.out.print("Type the model: ");
+				model = reader.next();
+				System.out.print("Type the battery capacity: ");
+				while (!reader.hasNextDouble()){
+					reader.next();
+					System.out.println("Enter a valid double number ");
+				}
+				batteryCapacity = reader.nextDouble();
+				msj = controller.createElectricCar(id, licensePlate, model, batteryCapacity);
+				System.out.println(msj); 
 
 				break; 
 
-			case 2: 
-				// calcular probabilidad de colisión  
+			case 3: //calculate collision probability 
+				msj = controller.calculateColision();
+				System.out.println(msj);
 
 				break; 
 
-			case 3: 
-				// calcular capacidad de las baterias 
+			case 4: //calculate battery status
+				
 
-				break; 
+				break;
 
 			case 0: 
 				System.out.println("Exit program.");
