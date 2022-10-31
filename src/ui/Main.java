@@ -50,21 +50,40 @@ public class Main {
 		String model = ""; 
 		double velocity = 0; 
 		double position = 0; 
-
+		double batteryCapacity = 0;
+		int selection = 0;
+        double km = 0;
+		String msj = "";
 		switch(option){
 			case 1: 
-				// create car 
-
+			System.out.println("Escribe el id del auto");
+			id = reader.next();
+			System.out.println("Escribe la placa del carro");
+			licensePlate = reader.next();
+			System.out.println("Escribe el modelo del carro");
+			model = reader.next("tipo de auto\n"+
+			                    "1.Autonomo\n"+
+								"2.Electrico");
+			selection = reader.nextInt();
+			System.out.println("Escribe la poicion del vehiculo");
+            position = reader.nextDouble();
+			System.out.println("Escribe la velocidad");
+			velocity = reader.nextDouble();
+			System.out.println("EScribe la capacidad de la bateria");
+			batteryCapacity = reader.nextDouble();
+			controller.createCar(id, licensePlate, model, position, velocity, batteryCapacity,selection);
 				break; 
 
 			case 2: 
 				// calcular probabilidad de colisión  
-
+                 controller.comparePosition();
 				break; 
 
 			case 3: 
-				// calcular capacidad de las baterias 
-
+				System.out.println("Escribe los kilometors recorridos");
+                km = reader.nextDouble();
+				msj = controller.getBatterys(km);
+				System.out.println(msj);
 				break; 
 
 			case 0: 

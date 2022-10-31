@@ -44,4 +44,23 @@ public class AutonomousCar extends Car implements ICollisionProbability {
 		this.velocity = velocity;
 	}
 
+	@Override
+	public String calculateCollisionProbability(Car car) {
+		String msj ="No es posible calcular la probabilidad de colision con este vehiculo; "+car.getId();
+		if(car instanceof AutonomousCar){
+			if( ((AutonomousCar)(car)).getPosition() == this.position && ((AutonomousCar)(car)).getVelocity() == this.velocity){
+				msj = "Los dos vehiculos pueden colocionar.Es necesario bajar la velocidad";
+				this.velocity = this.velocity - 10;
+			}else{
+				msj = "El riesgo de colision es bajo";
+			}
+		}
+		return msj;
+	}
+
+	@Override
+	public String drive(double kilometers) {
+		return "El vehiculo autonomo se ha movido "+ kilometers + " km";
+	}
+
 }
