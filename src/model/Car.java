@@ -5,6 +5,7 @@ public abstract class Car {
 	private String id;
 	private String licensePlate;
 	private String model;
+	
 
 	/**
 	 * 
@@ -22,7 +23,6 @@ public abstract class Car {
 	public String getId() {
 		return this.id;
 	}
-
 	/**
 	 * 
 	 * @param id

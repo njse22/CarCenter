@@ -45,21 +45,29 @@ public class Main {
 	}
 
 	public void executeOption(int option){
-		String id = ""; 
-		String licensePlate = ""; 
-		String model = ""; 
-		double velocity = 0; 
-		double position = 0; 
+		String which = "";
 
 		switch(option){
 			case 1: 
-				// create car 
-
+				// create car
+				System.out.println("Que tipo de carro deseas agregar? \n"+
+				"1. Autonomo \n"+
+				"2. Electricto \n"+
+				"n. Ninguno");
+				which = reader.nextLine();
+				if(which == "1"){
+					createAutonomousCar();
+				}else if(which == "2"){
+					createCar();
+				}else{
+					System.out.println("Ok");
+				}
+				
 				break; 
 
 			case 2: 
 				// calcular probabilidad de colisión  
-
+				System.out.println(controller.TotalColissionProb());
 				break; 
 
 			case 3: 
@@ -109,6 +117,43 @@ public class Main {
 		}
 
 		return option; 
+	}
+
+	public void createCar(){
+		String id = ""; 
+		String licensePlate = ""; 
+		String model = ""; 
+		double battery = 0;
+		System.out.println("Inserte el ID del carro");
+		id = reader.next();
+		System.out.println("Inserte la placa del carro");
+		licensePlate = reader.nextLine();
+		System.out.println("Inserte el modelo del carro");
+		model = reader.nextLine();
+		System.out.println("Inserte la capacidad de la bateria");
+		battery = reader.nextDouble();	
+		System.out.println(controller.createCar(id, licensePlate, model, 0, 0, battery, 1));
+
+	}
+
+	public void createAutonomousCar(){
+		String id = ""; 
+		String licensePlate = ""; 
+		String model = ""; 
+		double velocity = 0; 
+		double position = 0; 
+		System.out.println("Inserte el ID del carro");
+		id = reader.next();
+		System.out.println("Inserte la placa del carro");
+		licensePlate = reader.nextLine();
+		System.out.println("Inserte el modelo del carro");
+		model = reader.nextLine();
+		System.out.println("Inserte la velocidad del carro");
+		velocity = reader.nextDouble();	
+		System.out.println("Inserte la posicion del carro");
+		position = reader.nextDouble();
+		System.out.println(controller.createCar(id, licensePlate, model, position, velocity, 0, 2));
+
 	}
 
 

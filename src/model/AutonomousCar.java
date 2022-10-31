@@ -19,6 +19,10 @@ public class AutonomousCar extends Car implements ICollisionProbability {
 		this.velocity = velocity;
 
 	}
+	@Override
+	public String drive(double kmh){
+		return "El vehiculo autonomo se ha movilizado en "+kmh+" km";
+	}
 
 	public double getPosition() {
 		return this.position;
@@ -42,6 +46,20 @@ public class AutonomousCar extends Car implements ICollisionProbability {
 	 */
 	public void setVelocity(double velocity) {
 		this.velocity = velocity;
+	}
+
+	public String calculateCollisionProbability(Car car){
+		String msj = "";
+		if(car instanceof AutonomousCar){
+			AutonomousCar anyCar = (AutonomousCar)car;
+			if(anyCar.getPosition()==this.position && anyCar.getVelocity()==this.velocity){
+				msj = "Los dos vehiculos pueden colisionar, por favor baje la velocidad";
+				this.velocity = 10;
+			}else{
+				msj = "Los autos no pueden colisionar";
+			}
+		}
+		return msj;
 	}
 
 }
