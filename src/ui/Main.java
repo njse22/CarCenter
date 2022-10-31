@@ -1,6 +1,8 @@
 package ui;
 
 import model.*;
+
+import java.lang.ProcessBuilder.Redirect.Type;
 import java.util.Scanner;
 
 public class Main {
@@ -54,16 +56,72 @@ public class Main {
 		switch(option){
 			case 1: 
 				// create car 
+				reader.nextLine();
+				System.out.println("Dime el id de este carro: ");
+				id = reader.nextLine();
+				System.out.println("Dime los numero de placa para este carro: ");
+				licensePlate = reader.nextLine();
+				System.out.println("Dime que modelo es este carro: ");
+				model = reader.nextLine();
+				System.out.println("Dime que tipo de carro tienes"+
+				"\n 1. Carro electrico"+
+				"\n 2. Carro Autonomo"+
+				"\n OPcion: ");
+				int type = reader.nextInt();
+				switch(type){
+					case 1:
+						System.out.println("Dime la capacidad de bateria que tiene este carro");
+						double batteryCapacity = reader.nextDouble();
+						reader.nextLine();
 
+						System.out.println(controller.createCar(id, licensePlate,model,batteryCapacity));
+						break;
+
+					case 2:
+						System.out.println("Dime la posicion del carro: ");
+						position = reader.nextDouble();
+						reader.nextLine();
+						System.out.println("Dime la velocidad de este carro: ");
+						velocity = reader.nextDouble();
+						reader.nextLine();
+						break; 
+				}
 				break; 
 
 			case 2: 
 				// calcular probabilidad de colisión  
+				if(controller.carAvailability().equals("No hay carros matriculados")){
+					System.out.println(controller.carAvailability());
+				}else{
+			
+					System.out.println("Dime que tipo de carro tienes"+
+					"\n 1. Carro electrico"+
+					"\n 2. Carro Autonomo"+
+					"\n OPcion: ");
+					type = reader.nextInt();
+					switch(type){
+						case 1:
+							System.out.println("No es posible calcular la probabilidad de colision del vehiculo");
+							break;
+	
+						case 2:
+							System.out.println("Dime la posicion del carro: ");
+							position = reader.nextDouble();
+							reader.nextLine();
+							System.out.println("Dime la velocidad de este carro: ");
+							velocity = reader.nextDouble();
+							reader.nextLine();
+							break; 
+					}
+				}
 
 				break; 
 
 			case 3: 
 				// calcular capacidad de las baterias 
+				System.out.println("Dime cuantos kilometros has recorrido: ");
+				double k = reader.nextDouble();
+				System.out.println(controller.calculateBattery(k));
 
 				break; 
 

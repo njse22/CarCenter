@@ -1,6 +1,6 @@
 package model;
 
-public class ElectricCar extends Car implements IBatteryNotify {
+public final class ElectricCar extends Car implements IBatteryNotify {
 
 	private double batteryCapacity;
 
@@ -16,6 +16,11 @@ public class ElectricCar extends Car implements IBatteryNotify {
 		this.batteryCapacity = batteryCapacity;
 
 	}
+	public String getId(){
+		String id = super.getId();
+		return id;
+	}
+	
 
 	public double getBatteryCapacity() {
 		return this.batteryCapacity;
@@ -27,6 +32,20 @@ public class ElectricCar extends Car implements IBatteryNotify {
 	 */
 	public void setBatteryCapacity(double batteryCapacity) {
 		this.batteryCapacity = batteryCapacity;
+	}
+
+
+	@Override
+	public String calculateBatteryLevel() {
+		
+		return null;
+	}
+
+
+	@Override
+	public String drive(double kilometers) {
+	
+		return null;
 	}
 
 }

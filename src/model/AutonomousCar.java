@@ -1,6 +1,6 @@
 package model;
 
-public class AutonomousCar extends Car implements ICollisionProbability {
+public final class AutonomousCar extends Car implements ICollisionProbability {
 
 	private double position;
 	private double velocity;
@@ -42,6 +42,16 @@ public class AutonomousCar extends Car implements ICollisionProbability {
 	 */
 	public void setVelocity(double velocity) {
 		this.velocity = velocity;
+	}
+
+	@Override
+	public String calculateCollisionProbability(Car car) {
+		return null;
+	}
+
+	@Override
+	public String drive(double kilometers) {
+		return null;
 	}
 
 }

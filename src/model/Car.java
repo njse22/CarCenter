@@ -5,6 +5,7 @@ public abstract class Car {
 	private String id;
 	private String licensePlate;
 	private String model;
+	private TypeOfCar typeOfCar;
 
 	/**
 	 * 
@@ -16,6 +17,7 @@ public abstract class Car {
 		this.id = id; 
 		this.licensePlate = licensePlate;
 		this.model = model;
+
 
 	}
 
