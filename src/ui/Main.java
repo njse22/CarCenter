@@ -45,6 +45,7 @@ public class Main {
 	}
 
 	public void executeOption(int option){
+		String msj = "";
 		String id = ""; 
 		String licensePlate = ""; 
 		String model = ""; 
@@ -53,6 +54,26 @@ public class Main {
 
 		switch(option){
 			case 1: 
+
+				System.out.println(" > Bienvenido, digite una identificación para el auto.");
+				id = reader.next();
+				System.out.println("Digita la placa: ");
+				licensePlate = reader.next();
+				System.out.println("Digita el modelo: ");
+				model = reader.next();
+
+				System.out.println("Ahora di que tipo de carro deseas agregar: ");
+				CarType carType = validateType(reader.next());
+
+				System.out.println("Digita: ");
+				velocity = reader.nextDouble();
+				System.out.println("Digita: ");
+				position = reader.nextDouble();
+
+				msj = controller.createAuto(id, licensePlate, model, option, position, velocity, null);
+				System.out.println(msj);
+
+
 				// create car 
 
 				break; 
@@ -109,6 +130,19 @@ public class Main {
 		}
 
 		return option; 
+	}
+
+	public CarType validateType(String carTp){
+
+		CarType carType = CarType.AUTONOMOUSCAR;
+
+		if(carType.equals("autonomo")){
+			carType = CarType.AUTONOMOUSCAR;
+
+		}else if(carType.equals("electrico")){
+			carType = CarType.ELECTRICCAR;
+		}
+		return carType;
 	}
 
 

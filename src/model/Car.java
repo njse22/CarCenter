@@ -16,6 +16,7 @@ public abstract class Car {
 		this.id = id; 
 		this.licensePlate = licensePlate;
 		this.model = model;
+		
 
 	}
 
@@ -60,5 +61,6 @@ public abstract class Car {
 	 * @param kilometers
 	 */
 	public abstract String drive(double kilometers);
+
 
 }
