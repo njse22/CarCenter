@@ -40,7 +40,7 @@ public class CarController {
 
 	public String addCar(Car anyCar){
 		String msj = "";
-		boolean isFound = cars.contains(anyCar); 
+		boolean isFound = validateCar(anyCar.getId());
 		if(!isFound){ 
 			if(cars.size()<TOTAL_CARS){
 				if(cars.add(anyCar)){
@@ -75,7 +75,7 @@ public class CarController {
 	public String totalBatteryCalculation(double km){
 		String msj = "Baterias a "+km+"km \n";
 		int contador = 0;
-		for(int i=1; i<cars.size(); i++){
+		for(int i=0; i<cars.size(); i++){
 			if(cars.get(i) instanceof ElectricCar){
 				msj += "( Auto: "+cars.get(i).getId()+" ) "+((ElectricCar)cars.get(i)).calculateBatteryLevel(km)+"\n";
 			}
@@ -85,6 +85,16 @@ public class CarController {
 			msj = "No hay carros electricos registrados";
 		}
 		return msj;		
+	}
+
+	public boolean validateCar(String id){
+		boolean isFound = false;
+		for(int i=0; i<cars.size() && !isFound; i++){
+			if(cars.get(i).getId().equals(id)){
+				isFound = true;	
+			}
+		}
+		return isFound;
 	}
 
 
