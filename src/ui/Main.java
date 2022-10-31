@@ -3,6 +3,7 @@ package ui;
 import model.*;
 import java.util.Scanner;
 
+
 public class Main {
 
 	private CarController controller;
@@ -46,22 +47,54 @@ public class Main {
 
 	public void executeOption(int option){
 		String id = ""; 
+		int carType= 0;
 		String licensePlate = ""; 
 		String model = ""; 
 		double velocity = 0; 
-		double position = 0; 
+		double position = 0;
+		double battery = 0; 
+		double km = 0;
+
 
 		switch(option){
 			case 1: 
-				// create car 
+			System.out.println("Digit the id of the new car: ");
+			id = reader.next();
+			System.out.println("Digit the licensePlate: ");
+			licensePlate = reader.next();
+			System.out.println("Digit the model of the new car: ");
+			model= reader.next();
+			System.out.print("Choose the car you want to add:\n "+
+			"1.Autonomous car \n" +
+			"2.Electric car");
+			carType = validateIntegerInput();
+			if(carType == 1){
+				System.out.println("Digit the position of the new car: ");
+			    position = reader.nextDouble();
+			    System.out.println("Digit the velocity of the new car: ");
+			    velocity= reader.nextDouble();
+			String msj = controller.createAutonomousCar(id, licensePlate, model, position, velocity, battery);
+			System.out.println(msj);
+			}else if(carType == 2){
+				System.out.println("Digit the capacity of the battery: ");
+				battery = reader.nextDouble();	
+			String mssj	= controller.createElectricCar(id, licensePlate, model, position, velocity, battery);
+			System.out.println(mssj);
+
+			}else 
+			System.out.println("Something must be wrong");
 
 				break; 
 
 			case 2: 
-				// calcular probabilidad de colisión  
+				System.out.println("Digit the id of the car:");
+				id = reader.next();
+				System.out.println("Write the battery capacity: ");
+				km = reader.nextDouble();
+
+				
 
 				break; 
-
 			case 3: 
 				// calcular capacidad de las baterias 
 
