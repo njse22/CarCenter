@@ -2,6 +2,7 @@ package model;
 
 public abstract class Car {
 
+	private int type;
 	private String id;
 	private String licensePlate;
 	private String model;
@@ -12,11 +13,20 @@ public abstract class Car {
 	 * @param licensePlate
 	 * @param model
 	 */
-	public Car(String id, String licensePlate, String model) {
+	public Car(int type, String id, String licensePlate, String model) {
+		this.type = type;
 		this.id = id; 
 		this.licensePlate = licensePlate;
 		this.model = model;
 
+	}
+
+	public int getType() {
+		return this.type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
 	}
 
 	public String getId() {

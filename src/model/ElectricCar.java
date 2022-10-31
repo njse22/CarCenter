@@ -11,8 +11,8 @@ public class ElectricCar extends Car implements IBatteryNotify {
 	 * @param model
 	 * @param batteryCapacity
 	 */
-	public ElectricCar(String id, String licensePlate, String model, double batteryCapacity) {
-		super(id, licensePlate,model); 
+	public ElectricCar(int type, String id, String licensePlate, String model, double batteryCapacity) {
+		super(type, id, licensePlate,model); 
 		this.batteryCapacity = batteryCapacity;
 
 	}
@@ -27,6 +27,26 @@ public class ElectricCar extends Car implements IBatteryNotify {
 	 */
 	public void setBatteryCapacity(double batteryCapacity) {
 		this.batteryCapacity = batteryCapacity;
+	}
+
+	@Override
+	public String calculateBatteryLevel() {
+		double n = 1;
+		double newCapacity = 0;
+
+		double currentCapacity = getBatteryCapacity();
+
+		newCapacity = currentCapacity - (n*2);
+
+
+		setBatteryCapacity(newCapacity);
+
+		return "Battery level is: " + newCapacity;
+	}
+
+	@Override
+	public String drive(double kilometers) {
+		return "El vehículo eléctrico se ha movilizado en: kmh " + kilometers;
 	}
 
 }
