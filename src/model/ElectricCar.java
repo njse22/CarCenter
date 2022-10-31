@@ -29,4 +29,16 @@ public class ElectricCar extends Car implements IBatteryNotify {
 		this.batteryCapacity = batteryCapacity;
 	}
 
+	@Override
+	public void calculateBatteryLevel(double distance){
+		double consumeBaterry= 2*(distance/100);
+		double remainingBattery = this.batteryCapacity - consumeBaterry;
+		setBatteryCapacity(remainingBattery);
+	}
+
+	@Override
+	public String drive(double kilometers){
+		return "The electric car has traveled: " + kilometers + "km";
+	}
+
 }

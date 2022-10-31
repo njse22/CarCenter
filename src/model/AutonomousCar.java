@@ -44,4 +44,14 @@ public class AutonomousCar extends Car implements ICollisionProbability {
 		this.velocity = velocity;
 	}
 
+	@Override
+	public String calculateCollisionProbability(Car car){
+		return "The cars can be collide, please slow down the speed.";
+	}
+
+	@Override
+	public String drive(double kilometers){
+		return "The autonomous car has traveled: " + kilometers + "km";
+	}
+
 }

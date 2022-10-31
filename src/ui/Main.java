@@ -44,6 +44,71 @@ public class Main {
 		return option; 
 	}
 
+	public void carRegister(){
+		String msj = "";
+		System.out.println("Choose a option: \n" +
+			"1)ElectricCar     2)AutonomousCar");
+		int option = reader.nextInt();
+		CarType carType = validateCarType(option);
+		switch(carType){
+			case ELECTRICCAR:
+				System.out.println("Type car id:");
+				String id = reader.next();
+				System.out.println("Type car license plate:");
+				String licensePlate = reader.next();
+				System.out.println("Type car model:");
+				String model = reader.next();
+				System.out.println("Type car battery capacity:");
+				double batteryCapacity = reader.nextDouble();
+				msj = controller.createCarWithEnumeration(id, licensePlate, model, 0, 0, batteryCapacity, carType);
+				break; 
+			case AUTONOMOUSCAR:
+				System.out.println("Type car id:");
+				id = reader.next();
+				System.out.println("Type car license plate:");
+				licensePlate = reader.next();
+				System.out.println("Type car model:");
+				model = reader.next();
+				System.out.println("Type car position:");
+				double position = reader.nextDouble();
+				System.out.println("Type car velocity:");
+				double velocity = reader.nextDouble();
+				msj = controller.createCarWithEnumeration(id, licensePlate, model, position, velocity, 0, carType);
+				break; 
+			default:
+				msj = "Invalid option.";
+				break; 
+		}
+
+		System.out.println(msj);
+
+	}
+
+	public CarType validateCarType(int option){
+        CarType carType= CarType.ELECTRICCAR; 
+        if(option == 1){
+            carType = CarType.ELECTRICCAR;
+        }
+        else if(option == 2){
+            carType = CarType.AUTONOMOUSCAR;
+        }
+
+        return carType;
+    }
+
+    public void calculateBatteryStatus(){
+    	String msj = "Car id not registered.";
+    	System.out.println("Type car id:");
+		String id = reader.next();
+		int pos = controller.searchCarById(id);
+		if (pos != -1){
+			System.out.println("Type discance traveled(km):");
+			double distance = reader.nextDouble();
+			msj = controller.calculateBatteryStatus(pos, distance);
+		}
+		System.out.println(msj);
+    }
+
 	public void executeOption(int option){
 		String id = ""; 
 		String licensePlate = ""; 
@@ -53,7 +118,7 @@ public class Main {
 
 		switch(option){
 			case 1: 
-				// create car 
+				carRegister();
 
 				break; 
 
@@ -63,7 +128,7 @@ public class Main {
 				break; 
 
 			case 3: 
-				// calcular capacidad de las baterias 
+				calculateBatteryStatus();
 
 				break; 
 
