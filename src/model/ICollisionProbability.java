@@ -6,6 +6,6 @@ public interface ICollisionProbability {
 	 * 
 	 * @param car
 	 */
-	public String calculateCollisionProbability(Car car);
+	public double calculateCollisionProbability();
 
 }

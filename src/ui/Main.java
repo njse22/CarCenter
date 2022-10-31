@@ -45,25 +45,72 @@ public class Main {
 	}
 
 	public void executeOption(int option){
+		String msj="";
 		String id = ""; 
 		String licensePlate = ""; 
 		String model = ""; 
 		double velocity = 0; 
 		double position = 0; 
+		double batteryCapacity=0;
+		int choice=0;
+		double kilometers=0;
 
 		switch(option){
 			case 1: 
 				// create car 
-
+				
+				System.out.println("que auto quieres crear?\n"+
+				"1. autoautonomo\n"+
+				"2. autoelectrico");
+				choice=reader.nextInt();
+				if(choice==1){
+					System.out.println("digite el id del auto");
+					id=reader.next();
+					msj=controller.cheackRepeatidCar(id);
+					if(msj.equals("")){
+						System.out.println("digite la placa de la licencia");
+					    licensePlate=reader.next();
+					    System.out.println("digite el modelo del auto");
+					    model=reader.next();
+					    System.out.println("digite la posicion del vehiculo");
+					    velocity=reader.nextDouble();
+					    System.out.println("digite la posicion del auto");
+					    position=reader.nextDouble();
+						controller.createCar(id, licensePlate, model, position, velocity, batteryCapacity, choice);
+					}else{
+						System.out.println(msj);
+					}
+				}else if(choice==2){
+					System.out.println("digite el id del auto");
+					id=reader.next();
+					msj=controller.cheackRepeatidCar(id);
+					if(msj.equals("")){
+						System.out.println("digite la placa de la licencia");
+					    licensePlate=reader.next();
+					    System.out.println("digite el modelo del auto");
+					    model=reader.next();
+					    System.out.println("digite la carga de la bateria del auto");
+						batteryCapacity=reader.nextDouble();
+						controller.createCar(id, licensePlate, model, position, velocity, batteryCapacity, choice);
+					}else{
+						System.out.println(msj);
+					}
+				}else{
+					System.out.println("opcion no valida");
+				}
 				break; 
 
 			case 2: 
 				// calcular probabilidad de colisión  
-
+				controller.calculateCollisionProbabilityController();
 				break; 
 
 			case 3: 
 				// calcular capacidad de las baterias 
+				System.out.println("digite el kilometrage para saber la bateria restante de todos los vehiculos electricos");
+				kilometers=reader.nextDouble();
+				controller.calculateBatteryLevel(kilometers);
+				
 
 				break; 
 
