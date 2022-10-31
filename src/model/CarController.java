@@ -4,6 +4,8 @@ import ui.*;
 
 public class CarController {
 
+	private ElectricCar electricCar;
+
 	public static final int TOTAL_CARS = 10;
 	public Car[] cars; 
 	
@@ -51,13 +53,29 @@ public class CarController {
 
 	public String calculateColision(){
 		String msj = "";
-		boolean isFound = false;
 		for (int i = 1;i < TOTAL_CARS; i++ ){
 			if(cars[i] != null){
 				if(cars[0] instanceof AutonomousCar){
 					msj += ((AutonomousCar)(cars[0])).calculateCollisionProbability(cars[i]) + "\n";	
 				}
 			}
+		}
+		return msj;
+	}
+
+	public String calculateBattery(String idCarElectric, double km){
+		String msj = "";
+		boolean isFound = false;
+		for(int i = 0; i < TOTAL_CARS && !isFound; i++){
+			if(cars[i] != null){
+				if(cars[i] instanceof ElectricCar){
+					if(cars[i].getId().equalsIgnoreCase(idCarElectric)){
+						isFound = true;
+						msj = ((ElectricCar)(cars[i])).calculateBatteryLevel(km);
+					}
+				}
+			}
+				
 		}
 		return msj;
 	}

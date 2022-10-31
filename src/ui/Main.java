@@ -105,7 +105,16 @@ public class Main {
 				break; 
 
 			case 4: //calculate battery status
-				
+				System.out.print("Type the id of the Electric car: ");
+				id = reader.next();
+				System.out.print("Type how many km the car has driven: ");
+				while (!reader.hasNextDouble()){
+					reader.next();
+					System.out.println("Enter a valid double number ");
+				}
+				double km = reader.nextDouble();
+				msj = controller.calculateBattery(id, km);
+				System.out.println(msj);
 
 				break;
 

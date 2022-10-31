@@ -37,6 +37,6 @@ public class ElectricCar extends Car implements IBatteryNotify {
 	@Override
 	public String calculateBatteryLevel(double km){
 		double batteryRest = (km * 2)/100;
-		return "The remaining battery is: " + (batteryCapacity - batteryRest) + " KW";
+		return "The remaining battery is: " + (getBatteryCapacity() - batteryRest) + " KW";
 	}
 }
