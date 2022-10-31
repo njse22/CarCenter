@@ -26,13 +26,17 @@ public class ElectricCar extends Car implements IBatteryNotify {
 	@Override
 	public String calculateBatteryLevel(double km){
 		Double watts  =(km/100)*2;
-		return "El nivel de bateria es del "+(100-((watts/this.batteryCapacity)*100))+"%";
+		Double actualBattery = (100-((watts/this.batteryCapacity)*100));
+		if(actualBattery<0){
+			actualBattery = 0.0;
+		}
+		return "El nivel de bateria es del "+actualBattery+"%";
 	}
 
 	public double getBatteryCapacity() {
 		return this.batteryCapacity;
 	}
-	
+
 	/**
 	 * 
 	 * @param batteryCapacity

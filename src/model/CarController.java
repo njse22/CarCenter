@@ -11,6 +11,7 @@ public class CarController {
 
 	public CarController() {
 		cars = new ArrayList<>(TOTAL_CARS);
+		//Carro 1 para comparaciones por defecto
 		cars.add(new AutonomousCar("1", "GTS 564", "Twingo", 5, 10));
 	}
 
@@ -39,35 +40,53 @@ public class CarController {
 
 	public String addCar(Car anyCar){
 		String msj = "";
-
-		if(cars.size()<TOTAL_CARS){
-			if(cars.add(anyCar)){
-				msj = "Se agrego el auto";
+		boolean isFound = cars.contains(anyCar); 
+		if(!isFound){ 
+			if(cars.size()<TOTAL_CARS){
+				if(cars.add(anyCar)){
+					msj = "Se agrego el auto";
+				}
+			}else{
+				msj = "La capacidad de autos esta al maximo";
 			}
 		}else{
-			msj = "La capacidad de autos esta al maximo";
+			msj = "Ya hay un carro registrado con este id";
 		}
-
 		return msj;
 	}
 
 	public String totalColissionProb(){
 		String msj = "Probabilidades de colision \n";
+		int contador = 0;
 		for(int i=1; i<cars.size(); i++){
 			if(cars.get(i) instanceof AutonomousCar){
 				msj += "( Auto: "+cars.get(i).getId()+" ) "+((AutonomousCar)cars.get(i)).calculateCollisionProbability(cars.get(0))+"\n";
 			}else{
-				msj += "No es posible calcular la probabilidad de colision con el vehiculo: "+cars.get(i).getId()+"\n";
+				msj += "( Auto: "+cars.get(i).getId()+" ) "+"No es posible calcular la probabilidad de colision este vehiculo\n";
 			}
-			
+			contador++;
+		}
+		if (contador == 0){
+			msj = "No hay carros registrados";
 		}
 		return msj;
 	}
 
-	public String totalBatteryCalculation(){
-
-		
+	public String totalBatteryCalculation(double km){
+		String msj = "Baterias a "+km+"km \n";
+		int contador = 0;
+		for(int i=1; i<cars.size(); i++){
+			if(cars.get(i) instanceof ElectricCar){
+				msj += "( Auto: "+cars.get(i).getId()+" ) "+((ElectricCar)cars.get(i)).calculateBatteryLevel(km)+"\n";
+			}
+			contador++;
+		}
+		if (contador == 0){
+			msj = "No hay carros electricos registrados";
+		}
+		return msj;		
 	}
+
 
 	
 

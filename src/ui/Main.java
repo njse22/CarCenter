@@ -67,12 +67,19 @@ public class Main {
 
 			case 2: 
 				// calcular probabilidad de colisión  
-				System.out.println(controller.TotalColissionProb());
+				System.out.println(controller.totalColissionProb());
 				break; 
 
 			case 3: 
 				// calcular capacidad de las baterias 
-
+				System.out.println("Inserte los kilometros recorridos para calcular las baterias");
+				double km = reader.nextDouble();
+				if(km>0){
+					System.out.println(controller.totalBatteryCalculation(km));
+				}else{
+					System.out.println("Los kilometros deben ser mayor a 0");
+				}
+				
 				break; 
 
 			case 0: 
@@ -126,15 +133,31 @@ public class Main {
 		String model = ""; 
 		double battery = 0;
 		System.out.println("Inserte el ID del carro");
-		id = reader.next();
+		id = reader.next().trim();
 		reader.nextLine();
 		System.out.println("Inserte la placa del carro");
 		licensePlate = reader.nextLine();
-		System.out.println("Inserte el modelo del carro");
-		model = reader.nextLine();
-		System.out.println("Inserte la capacidad de la bateria");
-		battery = reader.nextDouble();	
-		System.out.println(controller.createCar(id, licensePlate, model, 0, 0, battery, 1));
+		if(licensePlate.trim().isEmpty()){
+			System.out.println("La placa no puede estar vacia");
+		}else{
+			System.out.println("Inserte el modelo del carro");
+			model = reader.nextLine();
+			if(model.trim().isEmpty()){
+				System.out.println("El modelo no puede estar vacio");
+			}else{
+				System.out.println("Inserte la capacidad de la bateria");
+				battery = reader.nextDouble();	
+				if (battery==0){
+					System.out.println("La bateria debe ser mayor a 0");
+				}else{
+					System.out.println(controller.createCar(id, licensePlate, model, 0, 0, battery, 1));
+				}
+			}
+
+		}
+		
+		
+		
 
 	}
 
@@ -149,13 +172,22 @@ public class Main {
 		reader.nextLine();
 		System.out.println("Inserte la placa del carro");
 		licensePlate = reader.nextLine();
-		System.out.println("Inserte el modelo del carro");
-		model = reader.nextLine();
-		System.out.println("Inserte la velocidad del carro");
-		velocity = reader.nextDouble();	
-		System.out.println("Inserte la posicion del carro");
-		position = reader.nextDouble();
-		System.out.println(controller.createCar(id, licensePlate, model, position, velocity, 0, 2));
+		if(licensePlate.trim().isEmpty()){
+			System.out.println("La placa no puede estar vacia");
+		}else{
+			System.out.println("Inserte el modelo del carro");
+			model = reader.nextLine();
+			if(model.trim().isEmpty()){
+				System.out.println("El modelo no puede estar vacio");
+			}else{
+				System.out.println("Inserte la velocidad del carro");
+				velocity = reader.nextDouble();	
+				System.out.println("Inserte la posicion del carro");
+				position = reader.nextDouble();
+				System.out.println(controller.createCar(id, licensePlate, model, position, velocity, 0, 2));
+			}
+	
+		}
 
 	}
 
