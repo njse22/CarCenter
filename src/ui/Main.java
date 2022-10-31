@@ -54,17 +54,17 @@ public class Main {
 		switch(option){
 			case 1: 
 				// create car 
-
+				addCar();
 				break; 
 
 			case 2: 
 				// calcular probabilidad de colisión  
-
+				calculateCollisionProbability();
 				break; 
 
 			case 3: 
 				// calcular capacidad de las baterias 
-
+				calculateBatteryLevel();
 				break; 
 
 			case 0: 
@@ -75,6 +75,62 @@ public class Main {
 				System.out.println("Invalid Option");
 				break; 
 		}
+	}
+
+	public void addCar(){
+		System.out.println("Escribe el id del Auto");
+		String id=reader.next();
+		System.out.println("Escribe la placa");
+		String licensePlate=reader.next();
+		System.out.println("Escribe el modelo");
+		String model=reader.next();
+		System.out.println("Si tu auto es electrico escribe 1, de lo contrario 2");
+		int option=validateIntegerInput();
+		while(option>2 || option<1){
+			System.out.println("Escribe una opcion valida");
+			option=validateIntegerInput();
+		}
+		if(option==1){
+			System.out.println("Escribe la capacidad de la bateria");
+			double batteryCapacity= validateDoubleInput();
+			while(batteryCapacity==-1){
+				System.err.println("Escribe un numero");
+				batteryCapacity=validateDoubleInput();
+			}
+			System.out.println(controller.createCar(id, licensePlate, model, 0, 0, batteryCapacity));
+		}else{
+			System.out.println("Escribe la posicion");
+			double position=validateDoubleInput();
+			while(position==-1){
+				System.err.println("Escribe un numero");
+				position=validateDoubleInput();
+			}
+			System.out.println("Escribe la velocidad");
+			double velocity=validateDoubleInput();
+			while(velocity==-1){
+				System.err.println("Escribe un numero");
+				velocity=validateDoubleInput();
+			}
+			System.out.println(controller.createCar(id, licensePlate, model, position, velocity, 0.0));
+		}
+	}
+
+	public void calculateCollisionProbability(){
+		System.out.println("Escribe el id del auto");
+		String id= reader.next();
+		System.out.println(controller.calculateCollisionProbability(id));
+	}
+
+	public void calculateBatteryLevel(){
+		System.out.println("Escribe el id del Auto");
+		String id=reader.next();
+		System.out.println("Escribe el Kilometraje");
+		double milage=validateDoubleInput();
+		while(milage==-1){
+			System.err.println("Escribe un numero");
+			milage=validateDoubleInput();
+		}
+		System.out.println(controller.calculateBatteryLevel(id, milage));
 	}
 
 	public Scanner getReader(){
