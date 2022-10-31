@@ -13,8 +13,8 @@ public class AutonomousCar extends Car implements ICollisionProbability {
 	 * @param position
 	 * @param velocity
 	 */
-	public AutonomousCar(String id, String licensePlate, String model, double position, double velocity) {
-		super(id, licensePlate, model); 
+	public AutonomousCar(String id, String licensePlate, String model, double mileage, double position, double velocity) {
+		super(id, licensePlate, model, mileage); 
 		this.position = position;
 		this.velocity = velocity;
 
@@ -42,6 +42,18 @@ public class AutonomousCar extends Car implements ICollisionProbability {
 	 */
 	public void setVelocity(double velocity) {
 		this.velocity = velocity;
+	}
+
+	@Override
+	public String calculateCollisionProbability(Car car) {
+		
+		return null;
+	}
+
+	@Override
+	public String drive(double kilometers) {
+		
+		return null;
 	}
 
 }

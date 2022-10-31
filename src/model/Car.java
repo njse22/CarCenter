@@ -5,6 +5,7 @@ public abstract class Car {
 	private String id;
 	private String licensePlate;
 	private String model;
+	private double mileage;
 
 	/**
 	 * 
@@ -12,12 +13,26 @@ public abstract class Car {
 	 * @param licensePlate
 	 * @param model
 	 */
-	public Car(String id, String licensePlate, String model) {
+	public Car(String id, String licensePlate, String model, double mileage) {
 		this.id = id; 
 		this.licensePlate = licensePlate;
 		this.model = model;
+		this.mileage = mileage;
 
 	}
+
+	public double getMileage() {
+		return this.mileage;
+	}
+
+	/**
+	 * 
+	 * @param id
+	 */
+	public void setMileage(double mileage) {
+		this.mileage = mileage;
+	}
+
 
 	public String getId() {
 		return this.id;
